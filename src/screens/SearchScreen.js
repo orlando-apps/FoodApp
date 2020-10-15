@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import useResults from '../hooks/useResults';
 import ResultsList from '../components/ResultsList';
@@ -11,7 +11,6 @@ const SearchScreen = () => {
   const filterResultsByPrice = (price) => {
     return results.filter(result =>{
       let tmp = result.name
-      console.log(result.name, result.price)
       if (tmp.includes("Peri")){
         console.log(result)
       }
@@ -20,7 +19,7 @@ const SearchScreen = () => {
   };
 
   return (
-    <View>
+    <View style = { {flex:1}} >
       <SearchBar
         term = {term}
         onTermChange = {(newTerm) => setTerm(newTerm)}
@@ -28,10 +27,12 @@ const SearchScreen = () => {
       />
       { errorMessage ? <Text>{errorMessage}</Text> : null }
       <Text> we have found {results.length} results</Text>
-      <ResultsList results = {filterResultsByPrice('$')} title = "Cost Effective" />
-      <ResultsList results = {filterResultsByPrice('$$')} title = "Bit Pricer" />
-      <ResultsList results = {filterResultsByPrice('$$$')} title = "Big Spender" />
-      <ResultsList results = {filterResultsByPrice('$$$$')} title = "Biggest Spender" />
+      <ScrollView>
+        <ResultsList results = {filterResultsByPrice('$')} title = "Cost Effective" />
+        <ResultsList results = {filterResultsByPrice('$$')} title = "Bit Pricer" />
+        <ResultsList results = {filterResultsByPrice('$$$')} title = "Big Spender" />
+        <ResultsList results = {filterResultsByPrice('$$$$')} title = "Biggest Spender" />
+      </ScrollView>
     </View>
   );
 };
