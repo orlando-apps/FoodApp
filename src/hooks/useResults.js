@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
 import yelp from '../api/yelp';
 
-// import {API_KEY} from '@env'
-
-
-// console.log("yo", API_KEY)
 
 export default () =>{
   const [ results, setResults ]  = useState([]);

@@ -19,21 +19,20 @@ const SearchScreen = () => {
   };
 
   return (
-    <View style = { {flex:1}} >
+    <>
       <SearchBar
         term = {term}
         onTermChange = {(newTerm) => setTerm(newTerm)}
         onTermSubmit = {() => searchApi(term)}
       />
       { errorMessage ? <Text>{errorMessage}</Text> : null }
-      <Text> we have found {results.length} results</Text>
       <ScrollView>
         <ResultsList results = {filterResultsByPrice('$')} title = "Cost Effective" />
         <ResultsList results = {filterResultsByPrice('$$')} title = "Bit Pricer" />
         <ResultsList results = {filterResultsByPrice('$$$')} title = "Big Spender" />
         <ResultsList results = {filterResultsByPrice('$$$$')} title = "Biggest Spender" />
       </ScrollView>
-    </View>
+    </>
   );
 };
 
